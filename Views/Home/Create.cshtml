@@ -1,0 +1,69 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Tuple<Analiza_Risc.Models.AddCompanie, Analiza_Risc.Models.AddActiveImobilizate,Analiza_Risc.Models.AddActiveCirculante,Analiza_Risc.Models.AddDatorii,Analiza_Risc.Models.AddCapitaluri>
+
+
+@{
+    System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
+}
+
+
+<h1>@User.Identity.Name</h1>
+
+<form  asp-controller="Analiz" asp-action="ADD" >
+ <label for="" class="form-label"> Active Imobilizate</label>
+<div class="mb-3">
+    <label for="" class="form-label"> Suma Activelor Imobilizate </label>
+    <input type="text" class="form-control" name="Suma_lei" asp-for="Item2.Suma_lei"/>
+</div>
+
+<label for="" class="form-label"> Active Circulante</label>
+<div class="mb-3">
+    <label for="" class="form-label"> Stocuri</label>
+    <input type="text" class="form-control" name="Stocuri" asp-for="Item3.Stocuri"/>
+</div>
+<div class="mb-3">
+    <label for="" class="form-label"> Creante</label>
+    <input type="text" class="form-control" name="Creante" asp-for="Item3.Creante"/>
+</div>
+<div class="mb-3">
+    <label for="" class="form-label"> Cheltueli_inregistrate</label>
+    <input type="text" class="form-control" name="Cheltueli_inregistrate" asp-for="Item3.Cheltueli_inregistrate"/>
+</div>
+<div class="mb-3">
+    <label for="" class="form-label"> Numera banca </label>
+    <input type="text" class="form-control" name="TotalBanca" asp-for="Item3.TotalBanca"/>
+</div>
+    <label for="" class="form-label"> Datorii</label>
+<div class="mb-3">
+    <label for="" class="form-label"> Datorii_Comerciale </label>
+    <input type="text" class="form-control" name="Datorii_Comerciale" asp-for="Item4.Datorii_Comerciale"/>
+</div>
+<div class="mb-3">
+    <label for="" class="form-label"> Datorii_Banca</label>
+    <input type="text" class="form-control" name="Datorii_Banca" asp-for="Item4.Datorii_Banca"/>
+</div>
+ <label for="" class="form-label"> Datorii pe termen lung</label>
+<div class="mb-3">
+    <label for="" class="form-label"> Imprumut pe termen lung</label>
+    <input type="text" class="form-control" name="Imprumut_PTL" asp-for="Item4.Imprumut_PTL"/>
+</div>
+ <label for="" class="form-label"> Capitaluri</label>
+<div class="mb-3">
+    <label for="" class="form-label"> Capital Social</label>
+    <input type="text" class="form-control" name="Capital_Social" asp-for="Item5.Capital_Social"/>
+</div>
+<div class="mb-3">
+    <label for="" class="form-label"> Profit Nerepartizat</label>
+    <input type="text" class="form-control" name="Profit_Nerepartizat" asp-for="Item5.Profit_Nerepartizat"/>
+</div>
+<div class="mb-3">
+    <label for="" class="form-label"> Rezerve</label>
+    <input type="text" class="form-control" name="Rezerve" asp-for="Item5.Rezerve"/>
+</div>
+
+<div class="mb-3">
+            <button type="submit" class="btn btn-dark">Trimite</button>
+        </div>
+
+</form>

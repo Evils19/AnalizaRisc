@@ -121,3 +121,14 @@ public class IndicatorR
     public long Id_RationF { get; set; }
     public double NivelR { get; set; }
 }
+
+public class InfoData
+{
+    public Companie Companie { get; set; }
+    public Active_Imobilizate ActiveImobilizate { get; set; }
+    public Active_Circulante ActiveCirculante { get; set; }
+    public Datorii Datorii { get; set; }
+    public CapitaluriiP Capitaluri { get; set; }
+    public Ration_Financiar RationFinanciar { get; set; }
+    public IndicatorR IndicatorR { get; set; }
+}

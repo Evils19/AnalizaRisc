@@ -1,66 +1,176 @@
-﻿@model Tuple<Analiza_Risc.Models.AddCompanie, Analiza_Risc.Models.AddActiveImobilizate,Analiza_Risc.Models.AddActiveCirculante,Analiza_Risc.Models.AddDatorii,Analiza_Risc.Models.AddCapitaluri>
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
+    var Valuta ="Lei";
+}
+<!-- Adaugă link-ul către Bootstrap (asigură-te că ai instalat Bootstrap) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<h1>Analiza Riscului de Faliment</h1>
 
 
 
-
-        <form asp-controller="Analiz" asp-action="ADD" method="post"/>
-<div class="mb-3">
-    <label for="" class="form-label">Numele Companiei</label>
-    <input type="text" class="form-control" id="name" name="Nume_Companie" asp-for="Item1.Nume_Companie"/>
-</div>
- <label for="" class="form-label"> Active Imobilizate</label>
-<div class="mb-3">
-    <label for="" class="form-label"> Suma Activelor Imobilizate </label>
-    <input type="text" class="form-control" name="Suma_lei" asp-for="Item2.Suma_lei"/>
-</div>
-
-<label for="" class="form-label"> Active Circulante</label>
-<div class="mb-3">
-    <label for="" class="form-label"> Stocuri</label>
-    <input type="text" class="form-control" name="Stocuri" asp-for="Item3.Stocuri"/>
-</div>
-<div class="mb-3">
-    <label for="" class="form-label"> Creante</label>
-    <input type="text" class="form-control" name="Creante" asp-for="Item3.Creante"/>
-</div>
-<div class="mb-3">
-    <label for="" class="form-label"> Cheltueli_inregistrate</label>
-    <input type="text" class="form-control" name="Cheltueli_inregistrate" asp-for="Item3.Cheltueli_inregistrate"/>
-</div>
-<div class="mb-3">
-    <label for="" class="form-label"> Numera banca </label>
-    <input type="text" class="form-control" name="TotalBanca" asp-for="Item3.TotalBanca"/>
-</div>
-    <label for="" class="form-label"> Datorii</label>
-<div class="mb-3">
-    <label for="" class="form-label"> Datorii_Comerciale </label>
-    <input type="text" class="form-control" name="Datorii_Comerciale" asp-for="Item4.Datorii_Comerciale"/>
-</div>
-<div class="mb-3">
-    <label for="" class="form-label"> Datorii_Banca</label>
-    <input type="text" class="form-control" name="Datorii_Banca" asp-for="Item4.Datorii_Banca"/>
-</div>
- <label for="" class="form-label"> Datorii pe termen lung</label>
-<div class="mb-3">
-    <label for="" class="form-label"> Imprumut pe termen lung</label>
-    <input type="text" class="form-control" name="Imprumut_PTL" asp-for="Item4.Imprumut_PTL"/>
-</div>
- <label for="" class="form-label"> Capitaluri</label>
-<div class="mb-3">
-    <label for="" class="form-label"> Capital Social</label>
-    <input type="text" class="form-control" name="Capital_Social" asp-for="Item5.Capital_Social"/>
-</div>
-<div class="mb-3">
-    <label for="" class="form-label"> Profit Nerepartizat</label>
-    <input type="text" class="form-control" name="Profit_Nerepartizat" asp-for="Item5.Profit_Nerepartizat"/>
-</div>
-<div class="mb-3">
-    <label for="" class="form-label"> Rezerve</label>
-    <input type="text" class="form-control" name="Rezerve" asp-for="Item5.Rezerve"/>
-</div>
-
-<div class="mb-3">
-            <button type="submit" class="btn btn-dark">Trimite</button>
+<div class="outer-menu">
+    <input class="checkbox-toggle" type="checkbox" />
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a asp-controller="Home"  asp-action="Create" style="color: #ffffff">Inregistrarea Datelor</a></li>
+                    <li><a a asp-controller="Home"  asp-action="Create" style="color: #ffffff">Redactearea Datelor</a></li>
+                    <li><a a asp-controller="Home"  asp-action="Create" style="color: #ffffff">stergerea Contului</a></li>
+                </ul>
+            </div>
         </div>
-        
-        
+    </div>
+</div>
+
+<h1> Informatia companiei @User.Identity.Name</h1>
+
+<div class="part1"><table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Bilant</th>
+      <th scope="col">Suma Lei</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Active Circulante</td>
+      <td>@ViewBag.ActiveImobilizate.Suma_lei @Valuta</td>
+
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Stocuri</td>
+      <td>@ViewBag.ActiveCirculante.Stocuri @Valuta</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Creante</td>
+      <td>@ViewBag.ActiveCirculante.Creante @Valuta</td>
+      <tr>
+        <th scope="row">4</th>
+        <td>Cheltueli inregistrate</td>
+        <td>@ViewBag.ActiveCirculante.Cheltueli_inregistrate @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Numerar in banca</td>
+        <td>@ViewBag.ActiveCirculante.Numerar_Banca @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td>Datorii</td>
+        <td>@ViewBag.Datorii.Datorii_Comerciale @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">7</th>
+        <td>Datorii la Banca</td>
+        <td>@ViewBag.Datorii.Datorii_Banca @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">8</th>
+        <td>Imprumut pe termen lung</td>
+        <td>@ViewBag.Datorii.Imprumut_PTL @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">9</th>
+        <td>Capitaluri</td>
+        <td>@ViewBag.Capitaluri.Capital_Social @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">10</th>
+        <td>Profit Nerepartizat</td>
+        <td>@ViewBag.Capitaluri.Profit_Nerepartizat @Valuta</td>
+      </tr>
+      <tr>
+        <th scope="row">11</th>
+        <td>Rezerve</td>
+        <td>@ViewBag.Capitaluri.Rezerve @Valuta</td>
+      </tr>
+    </tr>
+    
+    </tbody>
+  </table>
+</div>
+
+<div class="part2"/>
+<h2>Riscul de faliment a intreprinderei este @ViewBag.IndicatorR.NivelR % </h2>
+
+<canvas id="myChart" width="400" height="200"></canvas>
+<script>  
+    var data = {
+      labels: ['Stocuri', 'Creante', 'Cheltueli înregistrate', 'Numerar în Bancă', 'Datorii Comerciale', 'Datorii Bancare', 'Imprumut pe Termen Lung', 'Capital Social', 'Profit Nerepartizat', 'Rezerve'],
+      datasets: [{
+        label: 'Active',
+        data: [
+          @ViewBag.ActiveCirculante.Stocuri,
+          @ViewBag.ActiveCirculante.Creante,
+          0,
+          @ViewBag.ActiveCirculante.Numerar_Banca,
+          0,
+          0,
+          0,
+          @ViewBag.Capitaluri.Capital_Social,
+          @ViewBag.Capitaluri.Profit_Nerepartizat,
+          @ViewBag.Capitaluri.Rezerve
+        ],
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }, {
+        label: 'Datorii/Cheltuieli',
+        data: [
+          0,
+          0,
+          @ViewBag.ActiveCirculante.Cheltueli_inregistrate,
+          0,             
+          @ViewBag.Datorii.Datorii_Comerciale,
+          @ViewBag.Datorii.Datorii_Banca,
+          @ViewBag.Datorii.Imprumut_PTL,
+          0, // Dacă nu ai valori specifice pentru restul categoriilor, poți pune 0 sau valorile dorite
+          0,
+          0
+        ],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+      }]
+    };
+
+    // Opțiuni pentru diagramă
+    var options = {
+       scales: {
+         y: {
+           beginAtZero: true,
+           ticks: {
+             callback: function (value, index, values) {
+               return value + ' Lei'; // Adaugă "Lei" la fiecare etichetă a axei y
+             }
+           }
+         }
+       }
+     };
+
+    // Obține contextul canvasului
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Creează diagrama bară
+    var myChart = new Chart(ctx, {
+      type: 'bar', // Specifică tipul de diagramă
+      data: data,
+      options: options
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -1,18 +1,45 @@
-﻿@model TModel
-
+﻿@model Analiza_Risc.Models.ViewModels.RegisterModels
 @{
-    Layout = null;
+    Layout = "_Layout";
+    ViewBag.Title = "Inregistrare";
 }
 
-<!DOCTYPE html>
+<div style="padding: 20px;"></div>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <span class="anchor"></span>
+                    <div class="card card-account card-outline-secondary border border-white">
+                        <div class="card-header">
+                            <h3 class="mb-0 text-center paragraphHome text-black">Inregistreaza Compania</h3>
+                        </div>
+                        <div class="card-body">
+                            <form asp-controller="Account" asp-action="Register">
+                                <div asp-validation-summary="All" style="font-size:23px; font-family:Impact" class="text-danger text-center"></div>
+                                <div class="form-group">
+                                    <input asp-for="Numele_Companiei" class="form-control textbox-dg font-weight-bold text-center" placeholder="Numele Companiei" type="text">
+                                </div>
+                                     <div class="form-group">
+                                         <input asp-for="CUI" class="form-control textbox-dg font-weight-bold text-center" placeholder="Codul unic de inregistrare" type="text"></div>
+                                <div class="form-group">
+                                    <input autocomplete="new-password" asp-for="parola" placeholder="Пароль" class="form-control textbox-dg font-weight-bold text-center" type="password">
+                                </div>
+                                <span class="text-black" style="font-size: small; font-family:'Comic Sans MS'">Parola trebuie sa fie minim din 6 simboluri</span>
+                                <div class="form-group">
+                                    <input autocomplete="new-password" asp-for="PasswordConfirm" placeholder="Comfirmati parola" class="form-control textbox-dg font-weight-bold text-center" type="password">
+                                </div>
+                                <div>
+                                    <h2 class="paragraphHome text-center"><a asp-controller="Account" asp-action="Login" style="color:#000000;">Logare</a></h2>
+                                </div>
+                                <button class="btn btn-success btn-lg float-right" type="submit">Inregistrare</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>

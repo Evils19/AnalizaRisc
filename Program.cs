@@ -3,7 +3,8 @@ using Analiza_Risc.Models;
 using Analiza_Risc.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-
+using Analiza_Risc.Services.Helplers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,17 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IServiceCRUD, ServiceCRUD>();
-
+builder.Services.AddScoped<IAcauntService, AcauntService>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath =  new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+        options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+    });
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSQL"));
 });
-
-// builder.Services.AddDbContext<AnalizaRisccContext>(opt =>
-// {
-//     opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSQL"));
-// });
-
 
 var app = builder.Build();
 
@@ -31,6 +32,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

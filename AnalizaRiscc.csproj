@@ -44,4 +44,8 @@
       <UpToDateCheckInput Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\Analiz\" />
+    </ItemGroup>
+
 </Project>
