@@ -1,0 +1,94 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.EntityFrameworkCore.Storage
+@model Tuple<Analiza_Risc.Models.AddCompanie, Analiza_Risc.Models.AddActiveImobilizate,Analiza_Risc.Models.AddActiveCirculante,Analiza_Risc.Models.AddDatorii,Analiza_Risc.Models.AddCapitaluri>
+
+
+@{
+    System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
+}
+<div class="outer-menu">
+    <input class="checkbox-toggle" type="checkbox" />
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a asp-controller="Home"  asp-action="Index" style="color: #ffffff">Inf Companie</a></li>
+                    <li><a asp-controller="Home"  asp-action="DeleteCont" style="color: #ffffff">Stergerea Contului</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h1>@User.Identity.Name</h1>
+
+<form asp-controller="Analiz" asp-action="AddUpdate1" class="row g-3" style="border: 1px solid #ddd; /* Adaugă un border subțire */
+                                                                                     border-radius: 8px; /* Bucată rotundă la colțurile formularului */
+                                                                                     padding: 15px; /* Spațiu între conținut și border */
+                                                                                  background: rgb(131,58,180);
+                                                                                  background: linear-gradient(90deg, rgba(84,6,134,0.5) 0%, rgba(80,4,4,0.5) 50%, rgba(238,145,15,0.5) 100%);
+
+">
+   <div class="col-md-6">
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Suma Activelor Imobilizate</label>
+           <input type="text" class="form-control" name="Suma_lei" asp-for="Item2.Suma_lei" value="@(ViewBag.ActiveImobilizate.Suma_lei == 0 ? string.Empty : ViewBag.ActiveImobilizate.Suma_lei)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Stocuri</label>
+           <input type="text" class="form-control" name="Stocuri" asp-for="Item3.Stocuri" value="@(ViewBag.ActiveCirculante.Stocuri == 0 ? string.Empty : ViewBag.ActiveCirculante.Stocuri)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Creante</label>
+           <input type="text" class="form-control" name="Creante" asp-for="Item3.Creante" value="@(ViewBag.ActiveCirculante.Creante == 0 ? string.Empty : ViewBag.ActiveCirculante.Creante)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Cheltueli inregistrate</label>
+           <input type="text" class="form-control" name="Cheltueli_inregistrate" asp-for="Item3.Cheltueli_inregistrate" value="@(ViewBag.ActiveCirculante.Cheltueli_inregistrate == 0 ? string.Empty : ViewBag.ActiveCirculante.Cheltueli_inregistrate)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Numera banca</label>
+           <input type="text" class="form-control" name="TotalBanca" asp-for="Item3.TotalBanca" value="@(ViewBag.ActiveCirculante.Numerar_Banca == 0 ? string.Empty : ViewBag.ActiveCirculante.Numerar_Banca)" />
+       </div>
+
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Datorii Comerciale</label>
+           <input type="text" class="form-control" name="Datorii_Comerciale" asp-for="Item4.Datorii_Comerciale" value="@(ViewBag.Datorii.Datorii_Comerciale == 0 ? string.Empty : ViewBag.Datorii.Datorii_Comerciale)" />
+       </div>
+          </div>
+          
+          <div class="col-md-6">
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Datorii Banca</label>
+           <input type="text" class="form-control" name="Datorii_Banca" asp-for="Item4.Datorii_Banca" value="@(ViewBag.Datorii.Datorii_Banca == 0 ? string.Empty : ViewBag.Datorii.Datorii_Banca)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Imprumut pe termen lung</label>
+           <input type="text" class="form-control" name="Imprumut_PTL" asp-for="Item4.Imprumut_PTL" value="@(ViewBag.Datorii.Imprumut_PTL == 0 ? string.Empty : ViewBag.Datorii.Imprumut_PTL)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Capital Social</label>
+           <input type="text" class="form-control" name="Capital_Social" asp-for="Item5.Capital_Social" value="@(ViewBag.Capitaluri.Capital_Social == 0 ? string.Empty : ViewBag.Capitaluri.Capital_Social)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label"style="color: #24bdc9;font-weight: bold;">Profit Nerepartizat</label>
+           <input type="text" class="form-control" name="Profit_Nerepartizat" asp-for="Item5.Profit_Nerepartizat" value="@(ViewBag.Capitaluri.Profit_Nerepartizat == 0 ? string.Empty : ViewBag.Capitaluri.Profit_Nerepartizat)" />
+       </div>
+       <div class="mb-3">
+           <label for="" class="form-label" style="color: #24bdc9;font-weight: bold;"> Rezerve</label>
+           <input type="text" class="form-control" name="Rezerve" asp-for="Item5.Rezerve" value="@(ViewBag.Capitaluri.Rezerve == 0 ? string.Empty : ViewBag.Capitaluri.Rezerve)" />
+       </div>
+   </div>
+   
+   <div class="col-12">
+   <button type="submit" class="btn btn-dark btn-hover">Modifica</button>
+
+   </div>
+
+</form>
+

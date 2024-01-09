@@ -1,1 +1,85 @@
 ﻿
+<div class="outer-menu">
+    <input class="checkbox-toggle" type="checkbox" />
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a asp-controller="Home"  asp-action="Index" style="color: #ffffff">Inf Comapnie</a></li>
+                    <li><a asp-controller="Home"  asp-action="Update1" style="color: #ffffff">Redactarea datelor</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+
+<div class="container d-flex justify-content-center text-center align-content-center mt-5" style="padding-top: 15% ;">
+    <form id="deleteAccountForm">
+        <button id="deleteButton" class="btn btn-danger">Delete Account</button>
+    
+    </form>
+</div>
+
+        
+
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $('#deleteButton').on('click', function (e) {
+            e.preventDefault();
+
+            // Afișează întâi alerta SweetAlert2
+            Swal.fire({
+                title: "Sunteți sigur că doriți să ștergeți contul?",
+                text: "Nu veți putea reveni la contul dvs. după ștergere!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Da, ștergeți-l!",
+                cancelButtonText: "Anulare",
+            }).then((result) => {
+                // Dacă utilizatorul confirmă ștergerea, efectuează cererea AJAX
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Delete", "Analiz")',
+                        data: $().serialize(),
+                        success: function (response) {
+                            // Verificați răspunsul serverului și afișați mesajul SweetAlert2 în funcție de succes
+                            if (response.success) {
+                                Swal.fire({
+                                    title: "Succes!",
+                                    text: "Contul dvs. a fost șters",
+                                    icon: "success"
+                                });
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
+                            } else {
+                                Swal.fire({
+                                    title: "Succes!",
+                                    text: "Contul dvs. a fost șters",
+                                    icon: "success"
+                                }); 
+                                  setTimeout(function() {
+                                    location.reload();
+                                   }, 3000);
+                            }
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 namespace Analiza_Risc.Controllers;
 
+
 public class AccountController : Controller
 {
 
@@ -36,6 +37,7 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
+            
             var response = await _acauntService.Register(registerModels);
             if (response.StatusCode == StatusCodeUser.ok)
             {

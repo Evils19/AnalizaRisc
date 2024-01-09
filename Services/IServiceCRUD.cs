@@ -7,8 +7,11 @@ namespace Analiza_Risc.Services;
 public interface IServiceCRUD
 {
 
-    void InregisrCompanie(ClaimsIdentity respons, AddActiveImobilizate activeImobilizate,
+    public Task<IBaseResponse<Companie>> Update(ClaimsIdentity respons, AddActiveImobilizate activeImobilizate,
         AddActiveCirculante activeCirculante, AddDatorii addDatorii, AddCapitaluri addCapitaluri); 
+
     Task<InfoData> GetInfo(ClaimsIdentity response);
+    Task<InfoData> GetCompani(ClaimsIdentity response); 
+    void Delete(ClaimsIdentity response);
 }
 

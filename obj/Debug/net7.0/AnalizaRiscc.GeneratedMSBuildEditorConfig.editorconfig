@@ -24,10 +24,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Analiza-Risc/AnalizaRiscc/Views/Home/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Analiza-Risc/AnalizaRiscc/Views/Home/DeleteCont.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZWxldGVDb250LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -36,8 +32,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Analiza-Risc/AnalizaRiscc/Views/Home/Update.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGRhdGUuY3NodG1s
+[D:/Analiza-Risc/AnalizaRiscc/Views/Home/Update1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGRhdGUxLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Analiza-Risc/AnalizaRiscc/Views/Shared/Error.cshtml]

@@ -21,9 +21,8 @@
         <div>
             <div>
                 <ul>
-                    <li><a asp-controller="Home"  asp-action="Create" style="color: #ffffff">Inregistrarea Datelor</a></li>
-                    <li><a a asp-controller="Home"  asp-action="Create" style="color: #ffffff">Redactearea Datelor</a></li>
-                    <li><a a asp-controller="Home"  asp-action="Create" style="color: #ffffff">stergerea Contului</a></li>
+                    <li><a asp-controller="Home"  asp-action="Update1" style="color: #ffffff">Redactarea Datelor</a></li>
+                    <li><a asp-controller="Home"  asp-action="DeleteCont" style="color: #ffffff">Stergerea Contului</a></li>
                 </ul>
             </div>
         </div>
@@ -32,81 +31,103 @@
 
 <h1> Informatia companiei @User.Identity.Name</h1>
 
-<div class="part1"><table class="table">
+<div class="part1">
+  <table class="table">
     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Bilant</th>
-      <th scope="col">Suma Lei</th>
-    </tr>
+      <tr style="">
+        <th scope="col"><b>#</b></th>
+        <th scope="col"><b>Bilant</b></th>
+        <th scope="col"><b>Suma Lei</b></th>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Active Circulante</td>
-      <td>@ViewBag.ActiveImobilizate.Suma_lei @Valuta</td>
-
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Stocuri</td>
-      <td>@ViewBag.ActiveCirculante.Stocuri @Valuta</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Creante</td>
-      <td>@ViewBag.ActiveCirculante.Creante @Valuta</td>
       <tr>
-        <th scope="row">4</th>
-        <td>Cheltueli inregistrate</td>
-        <td>@ViewBag.ActiveCirculante.Cheltueli_inregistrate @Valuta</td>
+        <th scope="row"><b>1</b></th>
+        <td><b>Active Circulante</b></td>
+        <td><b>@ViewBag.ActiveImobilizate.Suma_lei @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">5</th>
-        <td>Numerar in banca</td>
-        <td>@ViewBag.ActiveCirculante.Numerar_Banca @Valuta</td>
+        <th scope="row"><b>2</b></th>
+        <td><b>Stocuri</b></td>
+        <td><b>@ViewBag.ActiveCirculante.Stocuri @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">6</th>
-        <td>Datorii</td>
-        <td>@ViewBag.Datorii.Datorii_Comerciale @Valuta</td>
+        <th scope="row"><b>3</b></th>
+        <td><b>Creante</b></td>
+        <td><b>@ViewBag.ActiveCirculante.Creante @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">7</th>
-        <td>Datorii la Banca</td>
-        <td>@ViewBag.Datorii.Datorii_Banca @Valuta</td>
+        <th scope="row"><b>4</b></th>
+        <td><b>Cheltueli inregistrate</b></td>
+        <td><b>@ViewBag.ActiveCirculante.Cheltueli_inregistrate @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">8</th>
-        <td>Imprumut pe termen lung</td>
-        <td>@ViewBag.Datorii.Imprumut_PTL @Valuta</td>
+        <th scope="row"><b>5</b></th>
+        <td><b>Numerar in banca</b></td>
+        <td><b>@ViewBag.ActiveCirculante.Numerar_Banca @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">9</th>
-        <td>Capitaluri</td>
-        <td>@ViewBag.Capitaluri.Capital_Social @Valuta</td>
+        <th scope="row"><b>6</b></th>
+        <td><b>Datorii</b></td>
+        <td><b>@ViewBag.Datorii.Datorii_Comerciale @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">10</th>
-        <td>Profit Nerepartizat</td>
-        <td>@ViewBag.Capitaluri.Profit_Nerepartizat @Valuta</td>
+        <th scope="row"><b>7</b></th>
+        <td><b>Datorii la Banca</b></td>
+        <td><b>@ViewBag.Datorii.Datorii_Banca @Valuta</b></td>
       </tr>
       <tr>
-        <th scope="row">11</th>
-        <td>Rezerve</td>
-        <td>@ViewBag.Capitaluri.Rezerve @Valuta</td>
+        <th scope="row"><b>8</b></th>
+        <td><b>Imprumut pe termen lung</b></td>
+        <td><b>@ViewBag.Datorii.Imprumut_PTL @Valuta</b></td>
       </tr>
-    </tr>
-    
+      <tr>
+        <th scope="row"><b>9</b></th>
+        <td><b>Capitaluri</b></td>
+        <td><b>@ViewBag.Capitaluri.Capital_Social @Valuta</b></td>
+      </tr>
+      <tr>
+        <th scope="row"><b>10</b></th>
+        <td><b>Profit Nerepartizat</b></td>
+        <td><b>@ViewBag.Capitaluri.Profit_Nerepartizat @Valuta</b></td>
+      </tr>
+      <tr>
+        <th scope="row"><b>11</b></th>
+        <td><b>Rezerve</b></td>
+        <td><b>@ViewBag.Capitaluri.Rezerve @Valuta</b></td>
+      </tr>
     </tbody>
   </table>
 </div>
 
+
 <div class="part2"/>
+
 <h2>Riscul de faliment a intreprinderei este @ViewBag.IndicatorR.NivelR % </h2>
 
+@{
+  var color = "Green"; 
+  if (ViewBag.IndicatorR.NivelR <30)
+  {
+     color = "Green";
+    
+  }
+  else if (ViewBag.IndicatorR.NivelR <60)
+  {
+    color = "Orange";
+  }
+  else
+  {
+    color = "darkred";
+  }
+
+}
+
+<h5 style="color: @color; font-family: Times"> @(@ViewBag.IndicatorR.NivelR == 0 ? string.Empty : ViewBag.Rsp)</h5>
+
 <canvas id="myChart" width="400" height="200"></canvas>
-<script>  
+
+<script>
     var data = {
       labels: ['Stocuri', 'Creante', 'Cheltueli înregistrate', 'Numerar în Bancă', 'Datorii Comerciale', 'Datorii Bancare', 'Imprumut pe Termen Lung', 'Capital Social', 'Profit Nerepartizat', 'Rezerve'],
       datasets: [{
@@ -132,7 +153,7 @@
           0,
           0,
           @ViewBag.ActiveCirculante.Cheltueli_inregistrate,
-          0,             
+          0,
           @ViewBag.Datorii.Datorii_Comerciale,
           @ViewBag.Datorii.Datorii_Banca,
           @ViewBag.Datorii.Imprumut_PTL,
@@ -170,7 +191,3 @@
       options: options
     });
 </script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

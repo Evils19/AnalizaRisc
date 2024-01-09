@@ -1,8 +1,11 @@
 ﻿using System.Security.Claims;
 using Analiza_Risc.Data;
 using Analiza_Risc.Models;
+using Analiza_Risc.Models.Enum;
 using Analiza_Risc.Response;
 using Analiza_Risc.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,20 +22,7 @@ public class AnalizController : Controller
         _serviceCrud = serviceCrud;
     }
 
-
-    [HttpPost]
-
-    public IActionResult ADD(ClaimsIdentity response, AddActiveImobilizate activeImobilizate,
-        AddActiveCirculante activeCirculante, AddDatorii addDatorii, AddCapitaluri addCapitaluri)
-    {
-
-        response = (ClaimsIdentity)User.Identity;
-        _serviceCrud.InregisrCompanie(response, activeImobilizate, activeCirculante, addDatorii, addCapitaluri);
-
-        return RedirectToAction("Index", "Home");
-
-    }
-
+    
     public async Task<IActionResult> Info()
     {
 
@@ -56,7 +46,31 @@ public class AnalizController : Controller
 
 
 
-
+    [HttpPost]
+    public async Task<IActionResult> AddUpdate1( AddActiveImobilizate activeImobilizate,
+        AddActiveCirculante activeCirculante, AddDatorii addDatorii, AddCapitaluri addCapitaluri)
+    {
+    
+        var identity = (ClaimsIdentity)User.Identity;
+      var  response = await _serviceCrud.Update(identity,activeImobilizate, activeCirculante, addDatorii, addCapitaluri);
+      if (response.StatusCode == StatusCodeUser.ok)
+      {
+          
+          HttpContext.Session.SetString("Feedback", response.Description);
+          return RedirectToAction("Index", "Home");
+      }
+      return RedirectToAction("Index", "Home");
+    
+    }
+    
+    public IActionResult Delete()
+    {
+        
+        var identity = (ClaimsIdentity)User.Identity;
+        _serviceCrud.Delete(identity);
+        HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Login", "Account");
+    }
 
 }
 

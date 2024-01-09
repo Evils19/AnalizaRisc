@@ -47,27 +47,28 @@ public class AppDbContext : DbContext
             .HasOne(ai => ai.RationFinanciar)
             .WithOne(rf => rf.ActiveImobilizate)
             .HasForeignKey<Ration_Financiar>(rf => rf.Id_Activ_IMT)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade); // Modificare la Cascade
         modelBuilder.Entity<Active_Circulante>()
             .HasOne(ai => ai.RationFinanciar)
             .WithOne(rf => rf.ActiveCirculante)
             .HasForeignKey<Ration_Financiar>(rf => rf.Id_Active_circ)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Datorii>()
             .HasOne(ai => ai.RationFinanciar)
             .WithOne(rf => rf.Datorii)
             .HasForeignKey<Ration_Financiar>(rf => rf.Id_Datorii)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<CapitaluriiP>()
             .HasOne(ai => ai.RationFinanciar)
             .WithOne(rf => rf.CapitaluriiP)
             .HasForeignKey<Ration_Financiar>(rf => rf.Id_CapitaluriP)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
+        
         modelBuilder.Entity<Ration_Financiar>()
             .HasOne(ai => ai.IndicatorR)
             .WithOne(rf => rf.RationFinanciar)
             .HasForeignKey<IndicatorR>(rf => rf.Id_RationF)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade); // Modificare la Cascade
         base.OnModelCreating(modelBuilder);
     }
 }
